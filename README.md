@@ -1,4 +1,5 @@
 # micro-orm
 
 ### Installation
-https://github.com/JesterHeads/micro-orm.git```
+Cloner le dépôt
+```https://github.com/JesterHeads/micro-orm.git```

@@ -18,6 +18,9 @@ abstract class Model {
         if(array_key_exists($attrName,$this->attrs)){
             return $this->attrs[$attrName];
         }
+        if(in_array($attrName, get_class_methods($this))){
+            return $this->$attrName();
+        }     
     }
 
     public function __set($attrName,$attrVal){
@@ -81,10 +84,22 @@ abstract class Model {
     public function belongs_to ($modele,$fk){
         $q = new Query;
         $tableBelong = strtolower($modele);
+        $modele = "td_orm\\".$modele;
         $idBelong = static::first($this->attrs[static::$primary])->$fk;
         $res = $q->table($tableBelong)->where("id","=",$idBelong)->get();
-        $res = new $modele($res[0]);
-        var_dump($res);die;
+        return $res = new $modele($res[0]); 
+    }
+
+    public function has_many($modele, $fk){
+        $q = new Query;
+        $tableBelong = strtolower($modele);
+        $class = "td_orm\\".$modele;
+        $res = $q->table($tableBelong)->where($fk, '=', $this->id)->get();
+        $modelList = [];
+        foreach($res  as $element){
+            $modelList[]= new $class($element);
+        }
+        return $modelList;
     }
 }
 

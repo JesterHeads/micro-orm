@@ -60,11 +60,36 @@ print "\n\n******** Affichage du premier article avec tarif<80 avec la méthode 
 $a = Article::first(['tarif',"<",'80']);
 print_r($a);
 
-// Récuperation de la categorie de l'article 
-print "\n\n******** Affichage de la catégorie de l'article 64 **********\n";
+// Récuperation de la categorie de l'article avec méthode belongs_to
+print "\n\n******** Affichage de la catégorie de l'article 64 avec méthode belongs_to **********\n";
 $a = Article::first(64);
 $c = $a->belongs_to('Categorie','id_categ');
 print_r($c);
 
+// récuperation de la liste d'article d'une categorie
+print "\n\n******** Affichage de la liste d'article de la categorie 1 avec méthode has_many **********\n";
+$c = Categorie::first(1);
+$a = $c->has_many('Article','id_categ');
+print_r($a);
+
+// Récuperation de la categorie de l'article avec méthode categorie()
+print "\n\n******** Affichage de la catégorie de l'article 64 avec méthode categorie() **********\n";
+$a = Article::first(64);
+$c = $a->categorie();
+print_r($c);
+
+// récuperation de la liste d'article d'une categorie avec méthode articles()
+print "\n\n******** Affichage de la liste d'article de la categorie 1 avec méthode articles() **********\n";
+$c = Categorie::first(1);
+$a = $c->articles();
+print_r($a);
+
+print "\n\n******** Affichage de la liste d'article de la categorie 1 avec méthode magique get() **********\n";
+$c = Categorie::first(1);
+print_r($c->articles);
+
+print "\n\n******** Affichage de la catégorie de l'article 64 avec méthode magique get() **********\n";
+$a = Article::first(64);
+print_r($a->categorie);
 
 ?>

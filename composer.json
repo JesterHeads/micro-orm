@@ -1,0 +1,9 @@
+{
+    "name": "benjam/td_orm",
+    "description": "td micro orm" ,
+    "autoload": {
+        "psr-4": {
+            "td_orm\\": "src"
+        }
+    }
+}

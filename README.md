@@ -3,7 +3,7 @@ THOUVENIN Benjamin RALLI Alexandre
 ### Installation
 Cloner le dépôt
 
-```https://github.com/JesterHeads/micro-orm.git```
+```git clone https://github.com/JesterHeads/micro-orm.git```
 
 executer la commande ```composer install```
 
